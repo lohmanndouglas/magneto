@@ -1,0 +1,54 @@
+<div id="popupConfiguration" class="popupConfiguration">
+    <br><br>
+    <div class="grid">
+        <label >Idioma</label>
+        <div style="width:8em;">
+            <select id="inlineFormCustomSelect">
+                <option selected data="pt">Portugues</option>
+                <option data="en">Ingles</option>
+		    <!-- <option value="1">Ingles</option> -->
+          </select>
+        </div>
+    </div>
+    <br>
+
+    <label>
+		    <input type="checkbox" checked="checked" id="labelsSelected" value="true">
+		    Exibir labels nos pontos
+		  </label> <br> <br>
+    <label>
+		    <input type="checkbox" id="xOyPlaneSelected" value="true">
+		    Exibir plano xOy <br>
+        <input type="checkbox" id="yOzPlaneSelected" value="true">
+        Exibir plano yOz <br>
+        <input type="checkbox" id="xOzPlaneSelected" value="true">
+        Exibir plano xOz <br>
+		  </label> <br>
+    <label>
+          <input type="checkbox" checked="checked" id="axesSelected" value="true">
+          Exibir eixos
+       </label> <br><br>
+    <div class="grid">
+        <label >Precisão exibida de </label>
+        <div style="width:8em; margin-right: 1.5em;">
+            <select id="precisionSelected">
+                <option value="1">1</option>
+                <option value="2" selected>2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+            </select>
+        </div>
+        <label > casas decimais </label> <br> <br>
+    </div>
+
+    <div class="add_btn_popup">
+        <div class="btn_add" onclick="_save_new_configuration()" state="disable">salvar</div>
+        <div class="btn_close" onclick="_close_set_configuration()">fechar</div>
+    </div>
+
+</div>
+
+
+
+
