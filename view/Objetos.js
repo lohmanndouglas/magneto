@@ -1,7 +1,7 @@
 // define a classe Anel
 var RingView = function(raio,carga,px,py,pz,rpx,rpy,rpz) { 
 	console.log("Raio: "+raio);
-    var torusGeometry = new THREE.TorusGeometry(raio, 0.37, 40, 100, Math.PI*2 ); 
+    var torusGeometry = new THREE.TorusGeometry(raio, 0.2, 40, 100, Math.PI*2 ); 
     var torusMaterial = new THREE.MeshBasicMaterial({color: 0x01DF3A});
     var torus = new THREE.Mesh(torusGeometry, torusMaterial);
     torus.position.x = px;
@@ -14,12 +14,15 @@ var RingView = function(raio,carga,px,py,pz,rpx,rpy,rpz) {
     torus.rotation.y = rpy;
     torus.rotation.z = rpz;
 
-
-    from = new THREE.Vector3(-0.7,raio+0.7,0);
-    to = new THREE.Vector3(1,0,0);
+    if(carga > 0){
+        from = new THREE.Vector3(-0.7,raio+0.4,0);
+        to = new THREE.Vector3(1,0,0);
+    } else{
+        from = new THREE.Vector3(0.7,raio+0.4,0);
+        to = new THREE.Vector3(-1,0,0);
+    }
     var arrowHelper = new THREE.ArrowHelper(to.normalize(), from, 1.5, 0x00000000, 0.7, 0.4);
     arrowHelper.line.material.linewidth = 2.5;
-
     torus.add(arrowHelper);
 
 
@@ -78,7 +81,7 @@ var DiscView = function(raio,carga,px,py,pz,rpx,rpy,rpz){
 }
 
 var LineView = function(raio,carga,px,py,pz,rpx,rpy,rpz){
-    var geometry = new THREE.CylinderGeometry( 0.5, 0.5, raio, 50 );
+    var geometry = new THREE.CylinderGeometry( 0.3, 0.3, raio, 50 );
     var material = new THREE.MeshBasicMaterial( { color: 0xB40404} );
     var disco = new THREE.Mesh( geometry, material );
     disco.position.x = px;
@@ -91,8 +94,13 @@ var LineView = function(raio,carga,px,py,pz,rpx,rpy,rpz){
     disco.rotation.y = rpy;
     disco.rotation.z = rpz;
 
-    from = new THREE.Vector3(0.7,-0.7,0);
-    to = new THREE.Vector3(0,1,0);
+    if(carga > 0){
+        from = new THREE.Vector3(0.5,-0.7,0);
+        to = new THREE.Vector3(0,1,0);
+    }else{
+        from = new THREE.Vector3(0.5,0.7,0);
+        to = new THREE.Vector3(0,-1,0);
+    }
     var arrowHelper = new THREE.ArrowHelper(to.normalize(), from, 1.5, 0x00000000, 0.7, 0.4);
     arrowHelper.line.material.linewidth = 2.5;
 
