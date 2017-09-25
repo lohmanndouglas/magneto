@@ -14,7 +14,7 @@ var RingView = function(raio,carga,px,py,pz,rpx,rpy,rpz) {
     torus.rotation.y = rpy;
     torus.rotation.z = rpz;
 
-    if(carga > 0){
+    if(carga < 0){
         from = new THREE.Vector3(-0.7,raio+0.4,0);
         to = new THREE.Vector3(1,0,0);
     } else{
@@ -130,9 +130,9 @@ var VetorView =  function(from, to, tipo){
         var vector_length = to.length();
         var length = Math.sqrt(to.x * to.x + to.y * to.y + to.z * to.z);
         length = Math.abs(length);
-  	 	if (length <= 1){ return -1;}
+  	 	if (length*10000000 <= 1){ return -1;}
         this.cor = 0x4DA6FF;
-        length = Math.max(10, length);
+        length = Math.max(10, length*10000000);
         var arrowHelper = new THREE.ArrowHelper(to.normalize(), from, Math.log(length) , this.cor, 1, 0.6 );
         arrowHelper.line.material.linewidth = 3.4;
     }

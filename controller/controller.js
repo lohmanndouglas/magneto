@@ -105,7 +105,7 @@ function calcField() {
                 // alert("x: "+vertices[1].x+" y: "+vertices[1].y+" z: "+vertices[1].z);
                 // alert("x: "+vertices[2].x+" y: "+vertices[2].y+" z: "+vertices[2].z);
                 // alert("x: "+vertices[3].x+" y: "+vertices[3].y+" z: "+vertices[3].z);
-                resultant_vector = calc_eletric_fild(new_vertices, Dot_POSITION, charge);
+                resultant_vector = calc_magnetic_field(new_vertices, Dot_POSITION, charge);
                 total.add(resultant_vector);
             }
             /* TODO: change addVector and addVectorInfo to acept vector3.
@@ -144,6 +144,8 @@ function calcForce(){
     /* get dots and objects */
     var charge_dots = tela.cena3D.listPontosView(); // a
     var objects = tela.cena3D.listObjView(); // o
+    var speed = new THREE.Vector3(0,0,0);
+    var force = new THREE.Vector3(0,0,0);
 
     if(charge_dots.length >= 1 && objects.length >= 1 ){
         var Dot_POSITION = new THREE.Vector3();
@@ -224,10 +226,11 @@ function calcForce(){
                 // for(k = 0; k < n_iterations ; k++){
                 //     new_vertices[k]=vertices[k].applyProjection(matriz_t);
                 // }
-                
-                resultant_vector = calc_eletric_fild(new_vertices, Dot_POSITION, charge);
-                resultant_vector.multiplyScalar(charge_dots[i].carga*Math.pow(10,-6));
-                total.add(resultant_vector);
+                speed.set(charge_dots[i].sx,charge_dots[i].sy,charge_dots[i].sz);
+                resultant_vector = calc_magnetic_field(new_vertices, Dot_POSITION, charge);
+                force.crossVectors(speed, resultant_vector);
+                force.multiplyScalar(charge_dots[i].carga*Math.pow(10,-6));
+                total.add(force);
             }
             /* TODO: change addVector and addVectorInfo to acept vector3.
              * don't do the scale here (it's addvector function)
