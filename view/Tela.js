@@ -321,6 +321,7 @@ function closePopUp() {
 function getNumbersFromMenu(div) {
   //menuNumbers
   //scene_nums
+  alert("AAAAAAAAAAA");
   var iten = div.getElementsByClassName("sliders");
   var object = {};
   for (var i = 0; i < iten.length; i++) {
@@ -352,23 +353,23 @@ function insertObject(nums, type) {
   console.log(nums + "   " + type);
   switch (type) {
     case "dcharge":
-      obj = new ChargeView(0.05, parseFloat(nums.cg), parseInt(nums.px), parseInt(nums.py), parseInt(nums.pz), parseFloat(nums.sx),parseFloat(nums.sy),parseFloat(nums.sz));
+      obj = new ChargeView(0.05, parseFloat(nums.cg), parseFloat(nums.px), parseFloat(nums.py), parseFloat(nums.pz), parseFloat(nums.sx),parseFloat(nums.sy),parseFloat(nums.sz));
       tela.cena3D.addDot(obj);
     break;
     case "dot":
-      obj = new DotView(0.1, parseFloat(nums.cg), parseInt(nums.px), parseInt(nums.py), parseInt(nums.pz));
+      obj = new DotView(0.1, parseFloat(nums.cg), parseFloat(nums.px), parseFloat(nums.py), parseFloat(nums.pz));
       tela.cena3D.addObject(obj);
     break;
     case "ring":
-      obj = new RingView(parseFloat(nums.ra), parseInt(nums.cg), parseInt(nums.px), parseInt(nums.py), parseInt(nums.pz), parseFloat(nums.rx), parseFloat(nums.ry), parseFloat(nums.rz)); // change raio atribut
+      obj = new RingView(parseFloat(nums.ra), parseFloat(nums.cg), parseFloat(nums.px), parseFloat(nums.py), parseFloat(nums.pz), parseFloat(nums.rx), parseFloat(nums.ry), parseFloat(nums.rz)); // change raio atribut
       tela.cena3D.addObject(obj); 
     break;
     case "line":
-      obj = new LineView(parseFloat(nums.cm), parseFloat(nums.cg), parseInt(nums.px), parseInt(nums.py), parseInt(nums.pz), parseFloat(nums.rx), parseFloat(nums.ry), parseFloat(nums.rz));
+      obj = new LineView(parseFloat(nums.cm), parseFloat(nums.cg), parseFloat(nums.px), parseFloat(nums.py), parseFloat(nums.pz), parseFloat(nums.rx), parseFloat(nums.ry), parseFloat(nums.rz));
       tela.cena3D.addObject(obj); 
     break;
     case "disc":
-      obj = new DiscView(parseFloat(nums.ra), parseFloat(nums.cg), parseInt(nums.px), parseInt(nums.py), parseInt(nums.pz), parseFloat(nums.rx), parseFloat(nums.ry), parseFloat(nums.rz));
+      obj = new DiscView(parseFloat(nums.ra), parseFloat(nums.cg), parseFloat(nums.px), parseFloat(nums.py), parseFloat(nums.pz), parseFloat(nums.rx), parseFloat(nums.ry), parseFloat(nums.rz));
       tela.cena3D.addObject(obj); 
     break;
   }

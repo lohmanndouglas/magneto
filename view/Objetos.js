@@ -120,8 +120,8 @@ var VetorView =  function(from, to, tipo){
         length = Math.abs(length);
         this.cor = 0xBFFF00;
         // alert("log: "+length*20000);
-        if (length <= 0){ return -1;}
-        length = Math.max(10, length*100000);
+        if (length*100000 <= 0){ return -1;}
+        length = Math.max(10, length*100000000000000);
         // alert("test: "+test);
         var arrowHelper = new THREE.ArrowHelper(to.normalize(), from, Math.log(length), this.cor, 1, 0.6);
         arrowHelper.line.material.linewidth = 3;
@@ -132,7 +132,7 @@ var VetorView =  function(from, to, tipo){
         length = Math.abs(length);
   	 	if (length*10000000 <= 1){ return -1;}
         this.cor = 0x4DA6FF;
-        length = Math.max(10, length*10000000);
+        length = Math.max(10, length*100000000000000000);
         var arrowHelper = new THREE.ArrowHelper(to.normalize(), from, Math.log(length) , this.cor, 1, 0.6 );
         arrowHelper.line.material.linewidth = 3.4;
     }

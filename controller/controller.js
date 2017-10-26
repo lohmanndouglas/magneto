@@ -49,7 +49,7 @@ function calcField() {
                  */
                  switch (objects[j].name) {
                     case "ring":
-                        var radius = objects[j].raio;
+                        var radius = (objects[j].raio)*0.01;
                         var n_iterations = 1000;
                         var teta = 0;
                         var dTeta = 2*Math.PI/n_iterations; 
@@ -63,7 +63,7 @@ function calcField() {
                         new_vertices[0] = objects[j].position;
                     break;
                     case "line":
-                        var length_ = objects[j].raio;
+                        var length_ = (objects[j].raio)*0.01;
                         var n_iterations = 2000;
                         var cont = length_/n_iterations;
                         var dp = cont/2; 
@@ -74,7 +74,7 @@ function calcField() {
                         }     
                     break;
                     case "disc":
-                        var radius = objects[j].raio;
+                        var radius = (objects[j].raio)*0.01;
                         var n_iterations = 2;
                         var n_iradius = 1000;
                         var dR = radius/n_iradius;
