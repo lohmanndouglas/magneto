@@ -1,11 +1,11 @@
 /**
  * file   Cena3D.js
  *
- * author Douglas Lohmann <dlohmann0@@gmail.com> 
+ * author Douglas Lohmann <dlohmann0@@gmail.com>
  *
- * brief  This file implements the class responsible for 
+ * brief  This file implements the class responsible for
  *         webgl component
- * 
+ *
  */
 
 /**
@@ -29,7 +29,7 @@ var Cena3D = function(div) {
     // camera.rotation.x = 90;
     // camera.lookAt(scene.position); /* camera configuration */
 
-    var renderer = createRender(div); /* create a render */ 
+    var renderer = createRender(div); /* create a render */
     var controls = new THREE.OrbitControls( camera , renderer.domElement);
     //controls.addEventListener( 'change', render );
 
@@ -60,7 +60,7 @@ var Cena3D = function(div) {
     scene.add(plane);
 
     scene.add( new THREE.AmbientLight(0xffffff, 0.8));
-    
+
     this.lista = function(){
         return helper_xOz;
     }
@@ -88,7 +88,7 @@ var Cena3D = function(div) {
         //console.log(updateCamera + "<<<" + mouse.x);
         controls.enableRotate = updateCamera;
         controls.update();
-        renderer.render(scene, camera); 
+        renderer.render(scene, camera);
     }
 
     /** This function create a render  for scene */
@@ -99,19 +99,19 @@ var Cena3D = function(div) {
         camera.aspect = window.innerWidth / window.innerHeight;
         camera.updateProjectionMatrix();
         //renderer.setClearColor(new THREE.Color(0xe6ffff));
-        // renderer.domElement.style.border ="solid blue 2px"; 
+        // renderer.domElement.style.border ="solid blue 2px";
         div.innerHTML = "";
         div.appendChild(renderer.domElement);
         div.setAttribute("enable","true");
         return renderer;
     }
-    
+
     /* resize  webgl component */
-    window.addEventListener("resize", function(){ 
+    window.addEventListener("resize", function(){
         renderer.setSize(window.innerWidth, window.innerHeight);
         camera.aspect = window.innerWidth / window.innerHeight;
         camera.updateProjectionMatrix();
-    }); 
+    });
 
     // /** This function add an object to 3D scene */
     // this.addObject = function(obj){
@@ -153,28 +153,28 @@ var Cena3D = function(div) {
     this.addDot = function(obj){
         scene.add(obj);
         pontos.push(obj);
-        tela.cena3D.atualizaLabels(); 
+        tela.cena3D.atualizaLabels();
     }
 
     this.changeConfg = function(objData){
         console.log("OBJ: "+objData);
 
-        if(objData.px)OBJ.position.x = parseFloat(objData.px); 
-        if(objData.py)OBJ.position.y = parseFloat(objData.py); 
-        if(objData.pz)OBJ.position.z = parseFloat(objData.pz); 
-        if(objData.rx)OBJ.rotation.x = parseFloat(objData.rx); 
-        if(objData.ry)OBJ.rotation.y = parseFloat(objData.ry); 
-        if(objData.rz)OBJ.rotation.z = parseFloat(objData.rz); 
+        if(objData.px)OBJ.position.x = parseFloat(objData.px);
+        if(objData.py)OBJ.position.y = parseFloat(objData.py);
+        if(objData.pz)OBJ.position.z = parseFloat(objData.pz);
+        if(objData.rx)OBJ.rotation.x = parseFloat(objData.rx);
+        if(objData.ry)OBJ.rotation.y = parseFloat(objData.ry);
+        if(objData.rz)OBJ.rotation.z = parseFloat(objData.rz);
 
-        if(objData.cg)OBJ.carga = parseFloat(objData.cg); 
+        if(objData.cg)OBJ.carga = parseFloat(objData.cg);
 		// if(objData.cm)OBJ.raio = parseFloat(objData.ra);
         if(objData.ra || objData.cm ){
         	type = OBJ.name;
         	tela.cena3D.excludeObject();
 			insertObject(objData, type)
-        	//OBJ.raio = parseFloat(objData.ra); 
+        	//OBJ.raio = parseFloat(objData.ra);
         }
-		
+
 
 	}
 
@@ -187,7 +187,7 @@ var Cena3D = function(div) {
         this.i = 0;
         for(this.i = 0; this.i < textos.length; this.i++){
             scene.remove(textos[this.i]);
-        }      
+        }
         textos = [];
     }
 
@@ -214,12 +214,12 @@ var Cena3D = function(div) {
         this.i = 0;
         for(this.i = 0; this.i < vetores.length; this.i++){
             scene.remove(vetores[this.i]);
-        }      
+        }
         vetores = [];
-        // remove todos os obj de informação do vetor 
+        // remove todos os obj de informação do vetor
         for(this.i = 0; this.i < vetorInfo.length; this.i++){
             scene.remove(vetorInfo[this.i]);
-        }      
+        }
         vetorInfo = [];
     }
 
@@ -255,7 +255,7 @@ var Cena3D = function(div) {
                 // this.texto = new Texto("P1",parseFloat(this.px),parseFloat(this.py),parseFloat(this.pz-1));
                 // tela.cena3D.addTexto(this.texto);
             }
-        }    
+        }
     }
 
 
@@ -288,7 +288,7 @@ var Cena3D = function(div) {
     //* This function show/remove the axes helper */
     this.drawAxes = function(){
         if(HELP_AXIS==true && scene.getObjectByName('axes_help') == null){
-            scene.add(axes); 
+            scene.add(axes);
         } else if(HELP_AXIS==false && scene.getObjectByName('axes_help')){
             scene.remove(scene.getObjectByName('axes_help'));
         }
@@ -301,13 +301,13 @@ var Cena3D = function(div) {
         textos.push(obj);
     }
 
- 
+
 
     function onDocumentMouseMove( event ) {
         event.preventDefault();
         mouse.x = ( (event.clientX - event.target.getBoundingClientRect().left) / event.currentTarget.width ) * 2 - 1;
         mouse.y = - ( (event.clientY - event.target.getBoundingClientRect().top) / event.currentTarget.height ) * 2 + 1;
-        
+
         vector = new THREE.Vector3(mouse.x, mouse.y, 0.5);
         vector = vector.unproject(camera);
 
@@ -323,23 +323,23 @@ var Cena3D = function(div) {
         var ob = objetos.concat(pontos);
         var intersects = raycaster.intersectObjects( ob );
             if ( intersects.length > 0 ) {
-               
+
                 if ( INTERSECTED != intersects[ 0 ].object ) {
                     updateCamera = false;
                     cursorOver();
                     if ( INTERSECTED ) INTERSECTED.material.color.setHex( INTERSECTED.currentHex );
-                    
+
                     INTERSECTED = intersects[ 0 ].object;
                     INTERSECTED.currentHex = INTERSECTED.material.color.getHex();
 
                     if( plane.position != INTERSECTED.position){
-                   
+
                     }
 
                     plane.position.copy( INTERSECTED.position );
                     plane.lookAt( camera.position );
 
-                      
+
                     }
                 } else {
                     updateCamera = true;
@@ -350,11 +350,11 @@ var Cena3D = function(div) {
             render();
     }
 
-    function cursorOver(){ 
+    function cursorOver(){
         document.body.setAttribute("style","cursor:pointer");
     }
 
-    function cursorNormal(){ 
+    function cursorNormal(){
         document.body.setAttribute("style","cursor:normal");
     }
 
@@ -382,14 +382,14 @@ var Cena3D = function(div) {
                 x = parseFloat(intersectsInfo[0].object.valor[0]);
                 y = parseFloat(intersectsInfo[0].object.valor[1]);
                 z = parseFloat(intersectsInfo[0].object.valor[2]);
-                obj_info.innerHTML = "<span > Vetor Campo El&eacute;trico:("+x.toPrecision(PRECISION)+", "+y.toPrecision(PRECISION)+", "+z.toPrecision(PRECISION)+") N/C </span><br>";
+                obj_info.innerHTML = "<span > Vetor Campo Magn&eacute;tico:("+x.toPrecision(PRECISION)+", "+y.toPrecision(PRECISION)+", "+z.toPrecision(PRECISION)+") T </span><br>";
                 document.getElementById('popupCena').setAttribute("state","show");
             } else if(intersectsInfo[0].object.tipo == "F"){
                 x = parseFloat(intersectsInfo[0].object.valor[0])
                 y = parseFloat(intersectsInfo[0].object.valor[1])
                 z = parseFloat(intersectsInfo[0].object.valor[2])
-               
-                obj_info.innerHTML = "<span > Vetor For&ccedil;a El&eacute;trica :("+x.toPrecision(PRECISION)+", "+y.toPrecision(PRECISION)+", "+z.toPrecision(PRECISION)+") N </span> <br>";
+
+                obj_info.innerHTML = "<span > Vetor For&ccedil;a Magn&eacute;tica:("+x.toPrecision(PRECISION)+", "+y.toPrecision(PRECISION)+", "+z.toPrecision(PRECISION)+") N </span> <br>";
                 document.getElementById('popupCena').setAttribute("state","show");
             } else if(intersectsInfo[0].object.tipo == "W"){
 
@@ -412,7 +412,7 @@ var Cena3D = function(div) {
             if (intersects.length > 0) {
 
                 SELECTED = intersects[0].object;
-                
+
                 var intersects = raycaster.intersectObject( plane );
                 if ( intersects.length > 0 ) {
                      offset.copy( intersects[ 0 ].point ).sub(plane.position);
@@ -441,7 +441,7 @@ var Cena3D = function(div) {
             }
             scene.remove(obj);
             pontos.splice(this.i,1);
-            tela.cena3D.atualizaLabels();        
+            tela.cena3D.atualizaLabels();
         }
     }
 
@@ -458,7 +458,7 @@ var Cena3D = function(div) {
                 removeVetor();
             }
 
-            tela.cena3D.atualizaLabels();        
+            tela.cena3D.atualizaLabels();
             plane.position.copy( INTERSECTED.position );
             SELECTED = null;
         }
@@ -466,8 +466,8 @@ var Cena3D = function(div) {
 
 
     /*!
-     * This method show the properties of an object or dcharge 
-     * called when a dobble click in an object or dcharge is 
+     * This method show the properties of an object or dcharge
+     * called when a dobble click in an object or dcharge is
      *
      */
     function onDocumentDoubleClick( event ){
@@ -521,7 +521,7 @@ var Cena3D = function(div) {
                     document.getElementById("menu_show_demo").innerHTML = varPopShowObjectMenuLine;
                     menuparams.cm = OBJ.raio;
                     setNumbersInMenu(document.getElementById("popupCena"), menuparams);
-                    // get and set the properties 
+                    // get and set the properties
                 break;
                 case "disc":
                     document.getElementById("menu_show_demo").innerHTML = varPopShowObjectMenuCirc;
@@ -532,12 +532,12 @@ var Cena3D = function(div) {
             }
             document.getElementById('popupCena').setAttribute("state","show");
         } else {
-           updateCamera = true; 
+           updateCamera = true;
         }
     }
  }
 
-function change(obj){    
+function change(obj){
     tela.cena3D.changeConfg(obj);
     fecharPop();
 }
@@ -550,5 +550,5 @@ function remove(){
 function fecharPop(){
     // document.getElementById('popupCena').style.display = 'none';
     // document.getElementById('divTrans').style.display = 'none';
-    tela.cena3D.atualizaLabels();        
+    tela.cena3D.atualizaLabels();
 }

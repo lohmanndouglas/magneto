@@ -1,7 +1,7 @@
 // ** Define a classe principal Tela ** //
 var Tela = function() {
   this.cena3D = new Cena3D(document.getElementsByTagName("main")[0]);
-  
+
 };
 
 function startTutorial(){
@@ -24,7 +24,7 @@ var menuNumbers = null;
 
 
  /*!
- * 
+ *
  * This method is called when click in setts in menu
  * is push
  *
@@ -45,7 +45,7 @@ function addSettsPopUp() {
 }
 
  /*!
- * 
+ *
  * This method is called when click in help in menu
  * is push
  *
@@ -66,8 +66,8 @@ function addHelpPopUp() {
 
 }
  /*!
- * 
- * This method is called when click in object in main scene 
+ *
+ * This method is called when click in object in main scene
  * is push
  *
  */
@@ -96,8 +96,8 @@ function addObjectPopUp() {
 }
 
  /*!
- * 
- * This method is called when an object add button 
+ *
+ * This method is called when an object add button
  * is push
  *
  */
@@ -113,7 +113,7 @@ function addObjetct() {
 
 
  /*!
- * This method change the configuration of dynamic 
+ * This method change the configuration of dynamic
  * popup add objects
  *
  */
@@ -217,25 +217,25 @@ function imgSelect() {
 
 
  /*!
- * This method set the dynamic 
+ * This method set the dynamic
  * popup of dots on work window
  *
  */
 function setNumbersInJobMenu() {
   var pts = tela.cena3D.listPontosView();
   // alert("pts: "+pts);
-  for (var i = 0; i < pts.length; i++) { // for each dot 
+  for (var i = 0; i < pts.length; i++) { // for each dot
     initialSelect = document.getElementById('sleI');
     finalSelect = document.getElementById('sleF');
     initialSelect.options[initialSelect.options.length] = new Option("P"+i, i);
-    finalSelect.options[finalSelect.options.length] = new Option("P"+i, i);    
+    finalSelect.options[finalSelect.options.length] = new Option("P"+i, i);
   }
 }
 
 function changeSelectedObject(){
   console.log("change");
   change(getNumbersFromMenu( document.getElementById("popupCena") ) );
-  
+
 }
 function removeSelectedObject(){
   console.log("remove");
@@ -290,7 +290,7 @@ function callPopUp(value) {
 
   var isPopupCena = document.getElementById('popupCena');
   if (isPopupCena) isPopupCena.setAttribute("state","hide");
-  
+
 
   if (!popUpDialog) {
     popUpDialog = document.getElementsByClassName("page_block")[0];
@@ -321,7 +321,6 @@ function closePopUp() {
 function getNumbersFromMenu(div) {
   //menuNumbers
   //scene_nums
-  alert("AAAAAAAAAAA");
   var iten = div.getElementsByClassName("sliders");
   var object = {};
   for (var i = 0; i < iten.length; i++) {
@@ -343,7 +342,7 @@ function setNumbersInMenu(div, value) {
 
 
  /*!
- * This method insert an object in scene 
+ * This method insert an object in scene
  *  called by addObjetct()
  *
  * \param nums, a vector of object params
@@ -362,15 +361,15 @@ function insertObject(nums, type) {
     break;
     case "ring":
       obj = new RingView(parseFloat(nums.ra), parseFloat(nums.cg), parseFloat(nums.px), parseFloat(nums.py), parseFloat(nums.pz), parseFloat(nums.rx), parseFloat(nums.ry), parseFloat(nums.rz)); // change raio atribut
-      tela.cena3D.addObject(obj); 
+      tela.cena3D.addObject(obj);
     break;
     case "line":
       obj = new LineView(parseFloat(nums.cm), parseFloat(nums.cg), parseFloat(nums.px), parseFloat(nums.py), parseFloat(nums.pz), parseFloat(nums.rx), parseFloat(nums.ry), parseFloat(nums.rz));
-      tela.cena3D.addObject(obj); 
+      tela.cena3D.addObject(obj);
     break;
     case "disc":
       obj = new DiscView(parseFloat(nums.ra), parseFloat(nums.cg), parseFloat(nums.px), parseFloat(nums.py), parseFloat(nums.pz), parseFloat(nums.rx), parseFloat(nums.ry), parseFloat(nums.rz));
-      tela.cena3D.addObject(obj); 
+      tela.cena3D.addObject(obj);
     break;
   }
   tela.cena3D.removeVetorView();
